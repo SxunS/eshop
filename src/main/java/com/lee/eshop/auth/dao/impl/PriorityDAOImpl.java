@@ -6,6 +6,7 @@ import com.lee.eshop.auth.po.AuthPriorityPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,5 +29,25 @@ public class PriorityDAOImpl implements IPriorityDAO {
     @Override
     public List<AuthPriorityPO> listRootPriority() {
         return priorityMapper.listRootPriority();
+    }
+
+    @Override
+    public List<AuthPriorityPO> listChildPriorities(long parentId) {
+        return priorityMapper.listChildPriorities(parentId);
+    }
+
+    @Override
+    public AuthPriorityPO getPriorityById(long id) {
+        return priorityMapper.getPriorityById(id);
+    }
+
+    @Override
+    public List<AuthPriorityPO> listAuthorizationByAccountId(long accountId) {
+        List<AuthPriorityPO> AccountAuthPriorityPOList = priorityMapper.listAccountAuthorizationByAccountId(accountId);
+        List<AuthPriorityPO> RoleAuthPriorityPOList = priorityMapper.listRoleAuthorizationByAccountId(accountId);
+        ArrayList<AuthPriorityPO> result = new ArrayList<>();
+        result.addAll(AccountAuthPriorityPOList);
+        result.addAll(RoleAuthPriorityPOList);
+        return result;
     }
 }
