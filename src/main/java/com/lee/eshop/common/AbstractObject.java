@@ -2,13 +2,16 @@ package com.lee.eshop.common;
 
 import com.lee.eshop.common.util.CopyUtil;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 基础 POJO
  * @author admin
  */
-public abstract class AbstractObject {
+public abstract class AbstractObject implements Serializable {
+
+    public static final long serialVersionUID = 1L;
 
     /**
      * id
