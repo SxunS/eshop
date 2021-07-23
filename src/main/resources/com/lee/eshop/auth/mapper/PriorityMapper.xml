@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.eshop.auth.mapper.PriorityMapper">
+
+    <sql id="priorityColumn">
+        ${alias}.id, ${alias}.code, ${alias}.url, ${alias}.priority_comment, ${alias}.priority_type, ${alias}.parent_id, ${alias}.gmt_create, ${alias}.gmt_modified
+    </sql>
+
+    <select id="listAccountAuthorizationByAccountId" resultType="com.lee.eshop.auth.po.AuthPriorityPO">
+        select
+        <include refid="priorityColumn">
+            <property name="alias" value="ap"/>
+        </include>
+        from auth_account_priority_relationship aapr
+        left join auth_priority ap on aapr.priority_id = ap.id
+        where aapr.account_id = #{accountId}
+    </select>
+
+    <select id="listRoleAuthorizationByAccountId" resultType="com.lee.eshop.auth.po.AuthPriorityPO">
+        select
+        <include refid="priorityColumn">
+            <property name="alias" value="ap"/>
+        </include>
+        from auth_account_role_relationship aarr
+        left join auth_role ar on aarr.role_id = ar.id
+        left join auth_role_priority_relationship arpr on ar.id = arpr.role_id
+        left join auth_priority ap on arpr.priority_id = ap.id
+        where aarr.account_id = #{accountId} and ar.is_enabled = true;
+    </select>
+</mapper>
