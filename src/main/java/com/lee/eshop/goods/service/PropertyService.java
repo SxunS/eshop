@@ -39,4 +39,10 @@ public interface PropertyService {
      * @return 处理结果
      */
     boolean updateProperty(PropertyDTO propertyDTO);
+
+    /**
+     * 删除商品属性
+     * @param id 商品属性id
+     */
+    void deleteProperty(long id);
 }

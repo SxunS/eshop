@@ -5,6 +5,8 @@ import com.lee.eshop.goods.dto.PropertyDTO;
 import com.lee.eshop.goods.po.PropertyPO;
 import com.lee.eshop.goods.request.PropertyQuery;
 
+import java.time.LocalDateTime;
+
 /**
  * 商品属性 DAO
  * @author admin
@@ -40,4 +42,10 @@ public interface PropertyDAO {
      * @return 处理结果
      */
     boolean updateProperty(PropertyPO propertyPO);
+
+    /**
+     * 删除商品属性
+     * @param id 商品属性id
+     */
+    void deleteProperty(long id);
 }

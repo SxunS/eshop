@@ -7,7 +7,6 @@ import com.lee.eshop.goods.dto.PropertyDTO;
 import com.lee.eshop.goods.po.PropertyPO;
 import com.lee.eshop.goods.request.PropertyQuery;
 import com.lee.eshop.goods.service.PropertyService;
-import com.lee.eshop.goods.vo.PropertyVO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -45,5 +44,10 @@ public class PropertyServiceImpl implements PropertyService {
     public boolean updateProperty(PropertyDTO propertyDTO) {
         PropertyPO propertyPO = propertyDTO.clone(PropertyPO.class);
         return propertyDAO.updateProperty(propertyPO);
+    }
+
+    @Override
+    public void deleteProperty(long id) {
+        propertyDAO.deleteProperty(id);
     }
 }

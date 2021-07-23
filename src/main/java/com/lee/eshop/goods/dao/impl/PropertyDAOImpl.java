@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -59,5 +60,10 @@ public class PropertyDAOImpl implements PropertyDAO {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void deleteProperty(long id) {
+        propertyMapper.deleteProperty(id, LocalDateTime.now());
     }
 }

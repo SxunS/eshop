@@ -12,8 +12,9 @@
             <property name="alias" value="cp"/>
         </include>
         from commodity_property cp
+        where is_delete = 0
         <if test="propertyName != null">
-            where property_name like '#{propertyName}%'
+            and property_name like '#{propertyName}%'
         </if>
     </select>
 
@@ -23,7 +24,7 @@
             <property name="alias" value="cp"/>
         </include>
         from commodity_property cp
-        where id = #{id}
+        where is_delete = 0 and id = #{id}
     </select>
 
     <insert id="saveProperty">
@@ -34,6 +35,12 @@
     <update id="updateProperty">
         update commodity_property
         set property_desc = #{propertyDesc}, gmt_modified = #{gmtModified}
-        where id = #{id}
+        where is_delete = 0 and id = #{id}
+    </update>
+
+    <update id="deleteProperty">
+        update commodity_property
+            set is_delete = 1, gmt_modified = #{deleteTime}
+        where is_delete = 0 and id = #{id}
     </update>
 </mapper>

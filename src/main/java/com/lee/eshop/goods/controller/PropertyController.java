@@ -9,6 +9,8 @@ import com.lee.eshop.goods.service.PropertyService;
 import com.lee.eshop.goods.vo.PropertyVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/commodity/property")
 public class PropertyController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PropertyController.class);
 
     /**
      * 商品管理模块service组件
@@ -77,6 +80,22 @@ public class PropertyController {
         PropertyDTO clone = propertyVO.clone(PropertyDTO.class);
         boolean success = propertyService.updateProperty(clone);
         return success ? CommonResult.sucess(null) :CommonResult.failed(null);
+    }
+
+    /**
+     * 删除商品属性
+     * @param id 商品属性id
+     * @return 通用结果集
+     */
+    @DeleteMapping("/{id}")
+    public CommonResult<Object> deleteProperty(@PathVariable long id){
+        try {
+            propertyService.deleteProperty(id);
+            return CommonResult.sucess(id);
+        } catch (Exception e) {
+            logger.error("Failed to delete property: [id = {}]", id, e);
+            return CommonResult.failed(id);
+        }
     }
 
 
