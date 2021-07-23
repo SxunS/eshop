@@ -1,9 +1,12 @@
 package com.lee.eshop.common.util;
 
+import com.github.pagehelper.PageInfo;
+import com.lee.eshop.common.AbstractObject;
 import net.sf.cglib.beans.BeanCopier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,6 +25,12 @@ public class CopyUtil {
 
     private static final Map<String, BeanCopier> BEAN_COPIER_CACHE = new ConcurrentHashMap<>();
 
+    /**
+     * 浅拷贝
+     * @param source 拷贝源
+     * @param targetType 拷贝结果类型
+     * @return 拷贝结果
+     */
     public static <T> T copy(Object source, Class<T> targetType){
         T targetInstance;
         try {
@@ -34,9 +43,35 @@ public class CopyUtil {
         return targetInstance;
     }
 
+    /**
+     * 浅拷贝
+     * @param source 拷贝源
+     * @param target 拷贝结果
+     */
     public static void copy(Object source, Object target){
         BeanCopier beanCopier = getBeanCopier(source.getClass(), target.getClass());
         beanCopier.copy(source,target,null);
+    }
+
+
+    /**
+     * 浅拷贝  copy pageInfo
+     * @param source  拷贝源
+     * @param targetClass 拷贝结果
+     * @return
+     */
+    public static <T> PageInfo<T> pageInfoCopy(PageInfo<? extends AbstractObject> source, Class<T> targetClass){
+        PageInfo<T> tPageInfo = new PageInfo<>();
+        //copy 分页信息
+        copy(source,tPageInfo);
+        //copy 数据信息并转换数据对象
+        ArrayList<T> cloneList = new ArrayList<>();
+        for (AbstractObject sourceObject : source.getList()) {
+            T clone = sourceObject.clone(targetClass);
+            cloneList.add(clone);
+        }
+        tPageInfo.setList(cloneList);
+        return tPageInfo;
     }
 
 

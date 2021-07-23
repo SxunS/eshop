@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.eshop.goods.mapper.PropertyMapper">
+    
+    <sql id="queryColumns">
+        ${alias}.id, ${alias}.property_name, ${alias}.property_desc, ${alias}.input_type, ${alias}.input_values, ${alias}.gmt_create, ${alias}.gmt_modified
+    </sql>
+
+    <select id="listPropertiesByPage" resultType="com.lee.eshop.goods.po.PropertyPO">
+        select
+        <include refid="queryColumns">
+            <property name="alias" value="cp"/>
+        </include>
+        from commodity_property cp
+        <if test="propertyName != null">
+            where property_name like '${propertyName}%'
+        </if>
+    </select>
+</mapper>

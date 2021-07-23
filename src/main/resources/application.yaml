@@ -3,3 +3,7 @@ spring:
     url: ${DATASOURCE_URL:jdbc:mysql://119.3.133.63:53306/eshop?autoReconnect=true&useUnicode=true&createDatabaseIfNotExist=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC}
     username: ${DB_USER:root}
     password: ${DB_PASS:Today_is_begain}
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
