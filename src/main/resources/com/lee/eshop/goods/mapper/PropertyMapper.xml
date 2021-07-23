@@ -12,8 +12,35 @@
             <property name="alias" value="cp"/>
         </include>
         from commodity_property cp
+        where is_delete = 0
         <if test="propertyName != null">
-            where property_name like '${propertyName}%'
+            and property_name like '#{propertyName}%'
         </if>
     </select>
+
+    <select id="getPropertyById" resultType="com.lee.eshop.goods.po.PropertyPO">
+        select
+        <include refid="queryColumns">
+            <property name="alias" value="cp"/>
+        </include>
+        from commodity_property cp
+        where is_delete = 0 and id = #{id}
+    </select>
+
+    <insert id="saveProperty">
+        insert into commodity_property(property_name, property_desc, input_type, input_values, gmt_create, gmt_modified)
+            values (#{propertyName}, #{propertyDesc}, #{inputType}, #{inputValue}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <update id="updateProperty">
+        update commodity_property
+        set property_desc = #{propertyDesc}, gmt_modified = #{gmtModified}
+        where is_delete = 0 and id = #{id}
+    </update>
+
+    <update id="deleteProperty">
+        update commodity_property
+            set is_delete = 1, gmt_modified = #{deleteTime}
+        where is_delete = 0 and id = #{id}
+    </update>
 </mapper>
