@@ -20,4 +20,22 @@ public interface PropertyMapper {
      */
     List<PropertyPO> listPropertiesByPage(PropertyQuery propertyQuery);
 
+    /**
+     * 根据id查询商品属性
+     * @param id 属性id
+     * @return 商品属性
+     */
+    PropertyPO getPropertyById(long id);
+
+    /**
+     * 新建商品属性
+     * @param propertyPO 商品属性
+     */
+    void saveProperty(PropertyPO propertyPO);
+
+    /**
+     * 更新商品属性
+     * @param propertyPO 商品属性
+     */
+    void updateProperty(PropertyPO propertyPO);
 }

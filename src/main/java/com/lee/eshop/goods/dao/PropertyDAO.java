@@ -1,6 +1,7 @@
 package com.lee.eshop.goods.dao;
 
 import com.github.pagehelper.PageInfo;
+import com.lee.eshop.goods.dto.PropertyDTO;
 import com.lee.eshop.goods.po.PropertyPO;
 import com.lee.eshop.goods.request.PropertyQuery;
 
@@ -18,4 +19,25 @@ public interface PropertyDAO {
      */
     PageInfo<PropertyPO> listPropertiesByPage(PropertyQuery propertyQuery);
 
+    /**
+     * 根据id查询商品属性
+     * @param id 属性id
+     * @return 商品属性
+     */
+    PropertyPO getPropertyById(long id);
+
+    /**
+     * 创建商品属性
+     * @param propertyPO 商品属性
+     * @return 处理结果
+     */
+    boolean saveProperty(PropertyPO propertyPO);
+
+
+    /**
+     * 更新商品属性
+     * @param propertyPO 商品属性
+     * @return 处理结果
+     */
+    boolean updateProperty(PropertyPO propertyPO);
 }

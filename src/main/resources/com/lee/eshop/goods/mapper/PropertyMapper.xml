@@ -13,7 +13,27 @@
         </include>
         from commodity_property cp
         <if test="propertyName != null">
-            where property_name like '${propertyName}%'
+            where property_name like '#{propertyName}%'
         </if>
     </select>
+
+    <select id="getPropertyById" resultType="com.lee.eshop.goods.po.PropertyPO">
+        select
+        <include refid="queryColumns">
+            <property name="alias" value="cp"/>
+        </include>
+        from commodity_property cp
+        where id = #{id}
+    </select>
+
+    <insert id="saveProperty">
+        insert into commodity_property(property_name, property_desc, input_type, input_values, gmt_create, gmt_modified)
+            values (#{propertyName}, #{propertyDesc}, #{inputType}, #{inputValue}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <update id="updateProperty">
+        update commodity_property
+        set property_desc = #{propertyDesc}, gmt_modified = #{gmtModified}
+        where id = #{id}
+    </update>
 </mapper>

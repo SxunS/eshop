@@ -19,4 +19,24 @@ public interface PropertyService {
     PageInfo<PropertyDTO> listPropertiesByPage(PropertyQuery propertyQuery);
 
 
+    /**
+     * 根据id查询商品属性
+     * @param id 属性id
+     * @return 商品属性
+     */
+    PropertyDTO getPropertyById(long id);
+
+    /**
+     * 创建商品属性
+     * @param propertyDTO 商品属性
+     * @return 处理结果
+     */
+    boolean saveProperty(PropertyDTO propertyDTO);
+
+    /**
+     * 更新商品属性
+     * @param propertyDTO 商品属性
+     * @return 处理结果
+     */
+    boolean updateProperty(PropertyDTO propertyDTO);
 }
