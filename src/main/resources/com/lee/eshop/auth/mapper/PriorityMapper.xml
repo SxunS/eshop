@@ -27,4 +27,42 @@
         left join auth_priority ap on arpr.priority_id = ap.id
         where aarr.account_id = #{accountId} and ar.is_enabled = true;
     </select>
+
+    <insert id="savePriority">
+        insert into auth_priority
+        (code, url, priority_comment, parent_id, gmt_create, gmt_modified) VALUES
+        (#{code}, #{url}, #{priorityComment}, #{parentId}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <update id="updatePriority">
+        update auth_priority
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="priorityComment != null">
+                priority_comment = #{priorityComment},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="deletePriorityById">
+        update auth_priority
+        <set>
+            is_delete = 1,
+        </set>
+        <where>
+            is_delete = 0 and id = #{id}
+        </where>
+    </update>
 </mapper>

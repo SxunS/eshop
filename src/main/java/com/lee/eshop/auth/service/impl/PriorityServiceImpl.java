@@ -51,6 +51,18 @@ public class PriorityServiceImpl implements IPriorityService {
         return changePOListToDTOList(authPriorityPOList);
     }
 
+    @Override
+    public void savePriority(AuthPriorityDTO authPriorityDTO) {
+        AuthPriorityPO authPriorityPO = authPriorityDTO.clone(AuthPriorityPO.class);
+        priorityDAO.savePriority(authPriorityPO);
+    }
+
+    @Override
+    public void updatePriority(AuthPriorityDTO authPriorityDTO) {
+        AuthPriorityPO authPriorityPO = authPriorityDTO.clone(AuthPriorityPO.class);
+        priorityDAO.updatePriority(authPriorityPO);
+    }
+
     private List<AuthPriorityDTO> changePOListToDTOList(List<AuthPriorityPO> authPriorityPOList) {
         List<AuthPriorityDTO> authPriorityDTOList = new ArrayList<>();
         for (AuthPriorityPO authPriorityPO : authPriorityPOList) {

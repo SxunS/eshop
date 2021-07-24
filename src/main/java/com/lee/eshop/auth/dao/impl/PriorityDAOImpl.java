@@ -50,4 +50,19 @@ public class PriorityDAOImpl implements IPriorityDAO {
         result.addAll(RoleAuthPriorityPOList);
         return result;
     }
+
+    @Override
+    public void savePriority(AuthPriorityPO authPriorityPO) {
+        priorityMapper.savePriority(authPriorityPO);
+    }
+
+    @Override
+    public void updatePriority(AuthPriorityPO authPriorityPO) {
+        priorityMapper.updatePriority(authPriorityPO);
+    }
+
+    @Override
+    public void deletePriorityById(Long id) {
+        priorityMapper.deletePriorityById(id);
+    }
 }

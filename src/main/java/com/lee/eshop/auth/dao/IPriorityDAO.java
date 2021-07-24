@@ -41,4 +41,23 @@ public interface IPriorityDAO {
     List<AuthPriorityPO> listAuthorizationByAccountId(long accountId);
 
 
+    /**
+     * 新建权限
+     * @param authPriorityPO 权限PO
+     */
+    void savePriority(AuthPriorityPO authPriorityPO);
+
+
+    /**
+     * 更新权限
+     * @param authPriorityPO 权限PO
+     *
+     */
+    void updatePriority(AuthPriorityPO authPriorityPO);
+
+    /**
+     * 根据id 删除权限
+     * @param id 权限id
+     */
+    void deletePriorityById(Long id);
 }

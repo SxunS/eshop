@@ -1,16 +1,18 @@
 package com.lee.eshop.auth.controller;
 
 import com.lee.eshop.auth.dto.AuthPriorityDTO;
-import com.lee.eshop.auth.po.AuthAccountPO;
-import com.lee.eshop.auth.po.AuthPriorityPO;
 import com.lee.eshop.auth.service.IPriorityService;
+import com.lee.eshop.auth.service.impl.AuthPriority;
+import com.lee.eshop.auth.service.impl.PriorityDelCheckOperatorImpl;
+import com.lee.eshop.auth.service.impl.PriorityDelOperatorImpl;
 import com.lee.eshop.auth.vo.AuthPriorityVO;
+import com.lee.eshop.common.result.CommonResult;
 import com.lee.eshop.common.util.CopyUtil;
-import javafx.scene.Parent;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,16 @@ import java.util.List;
 @RequestMapping("/auth")
 public class PriorityController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PriorityController.class);
+
 
     private final IPriorityService priorityService;
 
-    public PriorityController(IPriorityService priorityService) {
+    private final ApplicationContext applicationContext;
+
+    public PriorityController(IPriorityService priorityService, ApplicationContext applicationContext) {
         this.priorityService = priorityService;
+        this.applicationContext = applicationContext;
     }
 
     /**
@@ -51,6 +58,25 @@ public class PriorityController {
     }
 
     /**
+     * 添加权限
+     * @param authPriorityVO 权限vo
+     * @return 处理结果
+     */
+    @PostMapping("/priority/")
+    public CommonResult<Object> savePriority(AuthPriorityVO authPriorityVO){
+        try {
+            AuthPriorityDTO authPriorityDTO = authPriorityVO.clone(AuthPriorityDTO.class);
+            priorityService.savePriority(authPriorityDTO);
+            return CommonResult.sucess(null);
+        } catch (Exception e) {
+            logger.error("Failed to save Priority: [{}]", authPriorityVO, e);
+            return CommonResult.failed(null);
+        }
+    }
+
+
+
+    /**
      * 根据id 查询当前权限
      * @param id 权限id
      * @return 权限
@@ -63,7 +89,54 @@ public class PriorityController {
 
 
     /**
-     * 查询账号被授权的权限树
+     * 更新权限
+     * @param authPriorityVO 权限vo
+     * @return 处理结果
+     */
+    @PutMapping("/priority/")
+    public CommonResult<Object> updatePriority(AuthPriorityVO authPriorityVO){
+        try {
+            AuthPriorityDTO authPriorityDTO = authPriorityVO.clone(AuthPriorityDTO.class);
+            priorityService.updatePriority(authPriorityDTO);
+            return CommonResult.sucess(null);
+        } catch (Exception e) {
+            logger.error("Failed to update Priority: [{}]", authPriorityVO, e);
+            return CommonResult.failed(null);
+        }
+    }
+
+
+    /**
+     * 删除权限
+     * @param authPriorityVO 权限vo
+     * @return 处理结果
+     */
+    @DeleteMapping("/priority/")
+    public CommonResult<Object> deletePriority(AuthPriorityVO authPriorityVO){
+
+        try {
+            //校验是否可删除
+            AuthPriority authPriority = authPriorityVO.clone(AuthPriority.class);
+            PriorityDelCheckOperatorImpl delCheckOperator = applicationContext.getBean(PriorityDelCheckOperatorImpl.class);
+            authPriority.accept(delCheckOperator);
+
+            //执行删除操作
+            if (delCheckOperator.canDel()) {
+                PriorityDelOperatorImpl delOperator = applicationContext.getBean(PriorityDelOperatorImpl.class);
+                authPriority.accept(delOperator);
+            }
+
+            return CommonResult.sucess(null);
+        } catch (BeansException e) {
+            logger.error("Failed to delete Priority [{}]",authPriorityVO, e);
+            return CommonResult.failed(e.getMessage());
+        }
+
+    }
+
+
+    /**
+     *
      * @param accountId 账号id
      * @return 权限树
      */
