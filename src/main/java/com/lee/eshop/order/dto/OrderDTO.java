@@ -2,6 +2,7 @@ package com.lee.eshop.order.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.lee.eshop.base.dto.BaseDTO;
 import lombok.Data;
@@ -88,6 +89,11 @@ public class OrderDTO extends BaseDTO {
      * 订单备注
      */
     private String orderComment;
+
+    /**
+     * 订单项
+     */
+    private List<OrderItemDTO> orderItemDTOS;
 
 }
 
