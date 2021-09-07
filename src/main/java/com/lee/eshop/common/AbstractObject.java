@@ -1,6 +1,7 @@
 package com.lee.eshop.common;
 
 import com.lee.eshop.common.util.CopyUtil;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
  * 基础 POJO
  * @author admin
  */
+@Data
 public abstract class AbstractObject implements Serializable {
 
     public static final long serialVersionUID = 1L;
