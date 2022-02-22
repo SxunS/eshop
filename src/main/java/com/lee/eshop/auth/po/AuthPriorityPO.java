@@ -1,19 +1,16 @@
 package com.lee.eshop.auth.po;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.lee.eshop.auth.mapper.PriorityMapper;
+
+import com.lee.eshop.common.AbstractObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @ApiModel(value = "com-lee-eshop-auth-po-AuthPriorityPO")
-public class AuthPriorityPO implements Serializable {
+public class AuthPriorityPO extends AbstractObject implements Serializable {
     /**
      * 主键，自增长
      */

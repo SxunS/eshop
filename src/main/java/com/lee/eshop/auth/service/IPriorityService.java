@@ -41,4 +41,19 @@ public interface IPriorityService {
      */
     List<AuthPriorityDTO> listAuthorizationByAccountId(long accountId);
 
+
+    /**
+     * 添加权限
+     * @param authPriorityDTO 权限DTO
+     * @return 处理结果
+     */
+    void savePriority(AuthPriorityDTO authPriorityDTO);
+
+
+    /**
+     * 更新权限
+     * @param authPriorityDTO 权限DTO
+     * @return 处理结果
+     */
+    void updatePriority(AuthPriorityDTO authPriorityDTO);
 }

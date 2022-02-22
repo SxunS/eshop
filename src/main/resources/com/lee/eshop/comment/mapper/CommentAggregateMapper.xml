@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.eshop.comment.mapper.CommentAggregateMapper">
+  <resultMap id="BaseResultMap" type="com.lee.eshop.comment.po.CommentAggregatePO">
+    <!--@mbg.generated-->
+    <!--@Table comment_aggregate-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="total_comment_count" jdbcType="BIGINT" property="totalCommentCount" />
+    <result column="good_comment_count" jdbcType="BIGINT" property="goodCommentCount" />
+    <result column="good_comment_rate" jdbcType="DECIMAL" property="goodCommentRate" />
+    <result column="show_pictures_comment_count" jdbcType="BIGINT" property="showPicturesCommentCount" />
+    <result column="medium_comment_count" jdbcType="BIGINT" property="mediumCommentCount" />
+    <result column="bad_comment_count" jdbcType="BIGINT" property="badCommentCount" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, goods_id, total_comment_count, good_comment_count, good_comment_rate, show_pictures_comment_count, 
+    medium_comment_count, bad_comment_count, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from comment_aggregate
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from comment_aggregate
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lee.eshop.comment.po.CommentAggregatePO" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_aggregate (goods_id, total_comment_count, good_comment_count, 
+      good_comment_rate, show_pictures_comment_count, 
+      medium_comment_count, bad_comment_count, gmt_create, 
+      gmt_modified)
+    values (#{goodsId,jdbcType=BIGINT}, #{totalCommentCount,jdbcType=BIGINT}, #{goodCommentCount,jdbcType=BIGINT}, 
+      #{goodCommentRate,jdbcType=DECIMAL}, #{showPicturesCommentCount,jdbcType=BIGINT}, 
+      #{mediumCommentCount,jdbcType=BIGINT}, #{badCommentCount,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lee.eshop.comment.po.CommentAggregatePO" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_aggregate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="totalCommentCount != null">
+        total_comment_count,
+      </if>
+      <if test="goodCommentCount != null">
+        good_comment_count,
+      </if>
+      <if test="goodCommentRate != null">
+        good_comment_rate,
+      </if>
+      <if test="showPicturesCommentCount != null">
+        show_pictures_comment_count,
+      </if>
+      <if test="mediumCommentCount != null">
+        medium_comment_count,
+      </if>
+      <if test="badCommentCount != null">
+        bad_comment_count,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="totalCommentCount != null">
+        #{totalCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="goodCommentCount != null">
+        #{goodCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="goodCommentRate != null">
+        #{goodCommentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="showPicturesCommentCount != null">
+        #{showPicturesCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="mediumCommentCount != null">
+        #{mediumCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="badCommentCount != null">
+        #{badCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.eshop.comment.po.CommentAggregatePO">
+    <!--@mbg.generated-->
+    update comment_aggregate
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="totalCommentCount != null">
+        total_comment_count = #{totalCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="goodCommentCount != null">
+        good_comment_count = #{goodCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="goodCommentRate != null">
+        good_comment_rate = #{goodCommentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="showPicturesCommentCount != null">
+        show_pictures_comment_count = #{showPicturesCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="mediumCommentCount != null">
+        medium_comment_count = #{mediumCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="badCommentCount != null">
+        bad_comment_count = #{badCommentCount,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.eshop.comment.po.CommentAggregatePO">
+    <!--@mbg.generated-->
+    update comment_aggregate
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      total_comment_count = #{totalCommentCount,jdbcType=BIGINT},
+      good_comment_count = #{goodCommentCount,jdbcType=BIGINT},
+      good_comment_rate = #{goodCommentRate,jdbcType=DECIMAL},
+      show_pictures_comment_count = #{showPicturesCommentCount,jdbcType=BIGINT},
+      medium_comment_count = #{mediumCommentCount,jdbcType=BIGINT},
+      bad_comment_count = #{badCommentCount,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByGoodsId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment_aggregate
+    where id = #{goodsId,jdbcType=BIGINT}
+  </select>
+</mapper>

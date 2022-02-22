@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.eshop.auth.mapper.RolePriorityMapper">
+
+    <sql id="queryColumn">
+        ${alias}.id, ${alias}.priority_id, ${alias}.role_id, ${alias}.gmt_create, ${alias}.gmt_modified
+    </sql>
+
+    <select id="listRolePriorityRelationByPriorityId" resultType="com.lee.eshop.auth.po.AuthRolePriorityRelationshipPO">
+        select
+        <include refid="queryColumn">
+            <property name="alias" value="arpr"/>
+        </include>
+        from auth_role_priority_relationship arpr
+        <where>
+            is_delete = 0 and priority_id = #{priorityId}
+        </where>
+    </select>
+
+    <update id="deleteRolePriorityByPriorityId">
+        update auth_role_priority_relationship
+        <set>
+            is_delete = 1,
+        </set>
+        <where>
+            is_delete = 0 and priority_id = #{priorityId}
+        </where>
+    </update>
+</mapper>

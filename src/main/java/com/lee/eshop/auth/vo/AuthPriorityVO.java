@@ -1,5 +1,6 @@
 package com.lee.eshop.auth.vo;
 
+import com.lee.eshop.common.AbstractObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @ApiModel(value = "com-lee-eshop-auth-po-AuthPriorityPO")
-public class AuthPriorityVO implements Serializable {
+public class AuthPriorityVO extends AbstractObject implements Serializable {
     /**
      * 主键，自增长
      */

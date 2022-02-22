@@ -5,10 +5,12 @@ import java.util.Date;
 
 import com.lee.eshop.base.dto.BaseDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author s_xun_s@163.com
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class OrderItemDTO extends BaseDTO {
 
@@ -16,6 +18,11 @@ public class OrderItemDTO extends BaseDTO {
      * 订单ID
      */
     private Long orderId;
+
+    /**
+     * 商品spu ID
+     */
+    private Long goodsId;
 
     /**
      * 商品sku ID

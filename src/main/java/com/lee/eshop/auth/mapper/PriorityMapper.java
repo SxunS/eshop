@@ -52,4 +52,9 @@ public interface PriorityMapper {
      */
     List<AuthPriorityPO> listRoleAuthorizationByAccountId(long accountId);
 
+    void savePriority(AuthPriorityPO authPriorityPO);
+
+    void updatePriority(AuthPriorityPO authPriorityPO);
+
+    void deletePriorityById(long id);
 }

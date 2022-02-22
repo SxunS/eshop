@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.eshop.comment.mapper.CommentInfoVOMapper">
+  <resultMap id="BaseResultMap" type="com.lee.eshop.comment.vo.CommentInfoVO">
+    <!--@mbg.generated-->
+    <!--@Table comment_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_account_id" jdbcType="BIGINT" property="userAccountId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_sku_id" jdbcType="BIGINT" property="goodsSkuId" />
+    <result column="goods_sku_sale_properties" jdbcType="VARCHAR" property="goodsSkuSaleProperties" />
+    <result column="total_score" jdbcType="TINYINT" property="totalScore" />
+    <result column="goods_score" jdbcType="TINYINT" property="goodsScore" />
+    <result column="customer_service_score" jdbcType="TINYINT" property="customerServiceScore" />
+    <result column="logistics_score" jdbcType="TINYINT" property="logisticsScore" />
+    <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+    <result column="is_show_pictures" jdbcType="TINYINT" property="isShowPictures" />
+    <result column="is_default_comment" jdbcType="TINYINT" property="isDefaultComment" />
+    <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
+    <result column="comment_type" jdbcType="TINYINT" property="commentType" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_account_id, username, order_id, goods_id, goods_sku_id, goods_sku_sale_properties, 
+    total_score, goods_score, customer_service_score, logistics_score, comment_content, 
+    is_show_pictures, is_default_comment, comment_status, comment_type, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from comment_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from comment_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lee.eshop.comment.vo.CommentInfoVO" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_info (user_account_id, username, order_id, 
+      goods_id, goods_sku_id, goods_sku_sale_properties, 
+      total_score, goods_score, customer_service_score, 
+      logistics_score, comment_content, is_show_pictures, 
+      is_default_comment, comment_status, comment_type, 
+      gmt_create, gmt_modified)
+    values (#{userAccountId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT}, #{goodsSkuId,jdbcType=BIGINT}, #{goodsSkuSaleProperties,jdbcType=VARCHAR}, 
+      #{totalScore,jdbcType=TINYINT}, #{goodsScore,jdbcType=TINYINT}, #{customerServiceScore,jdbcType=TINYINT}, 
+      #{logisticsScore,jdbcType=TINYINT}, #{commentContent,jdbcType=VARCHAR}, #{isShowPictures,jdbcType=TINYINT}, 
+      #{isDefaultComment,jdbcType=TINYINT}, #{commentStatus,jdbcType=TINYINT}, #{commentType,jdbcType=TINYINT}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lee.eshop.comment.vo.CommentInfoVO" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userAccountId != null">
+        user_account_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsSkuId != null">
+        goods_sku_id,
+      </if>
+      <if test="goodsSkuSaleProperties != null">
+        goods_sku_sale_properties,
+      </if>
+      <if test="totalScore != null">
+        total_score,
+      </if>
+      <if test="goodsScore != null">
+        goods_score,
+      </if>
+      <if test="customerServiceScore != null">
+        customer_service_score,
+      </if>
+      <if test="logisticsScore != null">
+        logistics_score,
+      </if>
+      <if test="commentContent != null">
+        comment_content,
+      </if>
+      <if test="isShowPictures != null">
+        is_show_pictures,
+      </if>
+      <if test="isDefaultComment != null">
+        is_default_comment,
+      </if>
+      <if test="commentStatus != null">
+        comment_status,
+      </if>
+      <if test="commentType != null">
+        comment_type,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userAccountId != null">
+        #{userAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSkuId != null">
+        #{goodsSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSkuSaleProperties != null">
+        #{goodsSkuSaleProperties,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=TINYINT},
+      </if>
+      <if test="goodsScore != null">
+        #{goodsScore,jdbcType=TINYINT},
+      </if>
+      <if test="customerServiceScore != null">
+        #{customerServiceScore,jdbcType=TINYINT},
+      </if>
+      <if test="logisticsScore != null">
+        #{logisticsScore,jdbcType=TINYINT},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowPictures != null">
+        #{isShowPictures,jdbcType=TINYINT},
+      </if>
+      <if test="isDefaultComment != null">
+        #{isDefaultComment,jdbcType=TINYINT},
+      </if>
+      <if test="commentStatus != null">
+        #{commentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="commentType != null">
+        #{commentType,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.eshop.comment.vo.CommentInfoVO">
+    <!--@mbg.generated-->
+    update comment_info
+    <set>
+      <if test="userAccountId != null">
+        user_account_id = #{userAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSkuId != null">
+        goods_sku_id = #{goodsSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSkuSaleProperties != null">
+        goods_sku_sale_properties = #{goodsSkuSaleProperties,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=TINYINT},
+      </if>
+      <if test="goodsScore != null">
+        goods_score = #{goodsScore,jdbcType=TINYINT},
+      </if>
+      <if test="customerServiceScore != null">
+        customer_service_score = #{customerServiceScore,jdbcType=TINYINT},
+      </if>
+      <if test="logisticsScore != null">
+        logistics_score = #{logisticsScore,jdbcType=TINYINT},
+      </if>
+      <if test="commentContent != null">
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowPictures != null">
+        is_show_pictures = #{isShowPictures,jdbcType=TINYINT},
+      </if>
+      <if test="isDefaultComment != null">
+        is_default_comment = #{isDefaultComment,jdbcType=TINYINT},
+      </if>
+      <if test="commentStatus != null">
+        comment_status = #{commentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="commentType != null">
+        comment_type = #{commentType,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.eshop.comment.vo.CommentInfoVO">
+    <!--@mbg.generated-->
+    update comment_info
+    set user_account_id = #{userAccountId,jdbcType=BIGINT},
+      username = #{username,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_sku_id = #{goodsSkuId,jdbcType=BIGINT},
+      goods_sku_sale_properties = #{goodsSkuSaleProperties,jdbcType=VARCHAR},
+      total_score = #{totalScore,jdbcType=TINYINT},
+      goods_score = #{goodsScore,jdbcType=TINYINT},
+      customer_service_score = #{customerServiceScore,jdbcType=TINYINT},
+      logistics_score = #{logisticsScore,jdbcType=TINYINT},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      is_show_pictures = #{isShowPictures,jdbcType=TINYINT},
+      is_default_comment = #{isDefaultComment,jdbcType=TINYINT},
+      comment_status = #{commentStatus,jdbcType=TINYINT},
+      comment_type = #{commentType,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
